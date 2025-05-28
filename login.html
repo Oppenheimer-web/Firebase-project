@@ -85,13 +85,15 @@
             return
         }
         forgotState(true)
-        auth.sendPasswordResetEmail(myEmail)
+        firebase.auth().sendPasswordResetEmail(myEmail)
             .then(() => {
                 alert('Password reset email sent!')
                 forgotState(false)
             })
             .catch((error) => {
-                alert(error.message)
+                var errorCode = error.code;
+                var errorMessage = error.message;
+                alert(errorMessage)
                 forgotState(false)
          });
     }
